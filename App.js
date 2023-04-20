@@ -1,6 +1,6 @@
 import { StatusBar } from 'expo-status-bar';
 import { useRef, useState } from 'react';
-import { Button, Modal, Pressable, ScrollView, StyleSheet, Text, TextInput, View } from 'react-native';
+import { Button, Modal, Pressable, ScrollView, StyleSheet, Text, TextInput, View,Image } from 'react-native';
 
 export default function App() {
   const [text, settext] = useState('');
@@ -35,7 +35,8 @@ export default function App() {
         {!isvisible && <Button title='add a note' onPress={enableModal}></Button>}
         <Modal style={styles.modal} animationType='slide' visible={isvisible}>
           <View style={styles.inputcontainer}>
-            <TextInput ref={input} onChangeText={handleChange} style={{ height: 20, fontSize: 19, marginBottom: 20 }} placeholder='type something ...'></TextInput>
+            <Image style={styles.image} source={require('./assets/note.png')} /> 
+            <TextInput ref={input} onChangeText={handleChange} style={{ height: 40, fontSize: 19,borderRadius:7,textAlign:'center', marginBottom: 20 ,backgroundColor:'lightgray'}} placeholder='type something ...'></TextInput>
             <Button title='ADD' disabled={!text.length > 0} onPress={handleAdd}></Button>
             <Button title='Close' color={'red'} onPress={disableModal}></Button>
           </View>
@@ -62,6 +63,13 @@ const styles = StyleSheet.create({
     padding: 30,
     fontSize: 32,
     fontFamily: "monospace"
+  },
+  image:{
+    height:150,
+    width:150,
+    alignSelf:'center'
+  
+
   },
   inputcontainer: {
     flex: 2,
